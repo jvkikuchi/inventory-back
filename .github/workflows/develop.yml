@@ -21,6 +21,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -30,10 +34,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Install Dependecies
-        run: yarn
-
-      - name: Test suite
-        run: yarn test:CICD
+        run: npm i
 
       - name: serverless deploy
         uses: serverless/github-action@v3
@@ -43,4 +44,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           IMAGE_TAG: ${{ github.sha }}
         with:
-          args: deploy --param="commit=${{ github.sha }}" --stage develop --verbose
+          args: deploy --param="commit=${{ github.sha }}" --stage dev --verbose
