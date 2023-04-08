@@ -20,7 +20,7 @@ const serverlessConfiguration = {
     exclude: [".git/**", ".gitignore", ".github/**", ".vscode/**"],
   },
   functions: {
-    getTete: {
+    getTeste: {
       handler: "src/lambdas/getTest/index.bootstrap",
       name: "get-teste-${self:provider.stage}",
       events: [

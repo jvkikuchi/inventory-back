@@ -1,7 +1,8 @@
 import { APIGatewayEvent } from "aws-lambda";
+import { Response } from "../../common/interfaces";
 import { makeGetTestController } from "./factories/MakeGetTestController";
 
-export async function bootstrap(event: APIGatewayEvent) {
+export async function bootstrap(event: APIGatewayEvent): Promise<Response> {
   try {
     const controller = makeGetTestController();
     const response = await controller.exec(event);

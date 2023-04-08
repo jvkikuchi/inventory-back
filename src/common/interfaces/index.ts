@@ -1,5 +1,5 @@
 export interface Response {
-  status: number;
+  statusCode: number;
   body: any[] | string;
 }
 
