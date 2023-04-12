@@ -1,6 +1,6 @@
-import { GetTestUseCase } from "../domain/GetTestUseCase";
-import { GetTestController } from "../ports/controllers/GetTestController";
-import { GetTestRepository } from "../ports/repositories/GetTestRepository";
+import {GetTestUseCase} from '../domain/GetTestUseCase';
+import {GetTestController} from '../ports/controllers/GetTestController';
+import {GetTestRepository} from '../ports/repositories/GetTestRepository';
 
 export function makeGetTestController() {
   const repository = new GetTestRepository();
