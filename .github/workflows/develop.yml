@@ -3,7 +3,7 @@ name: Development Deploy
 on:
   push:
     branches:
-      - develop
+      - dev
 
 env:
   AWS_REGION: sa-east-1
@@ -15,7 +15,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: develop
+    environment: dev
 
     # Deploy to Serverless
     steps:

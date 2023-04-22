@@ -1,0 +1,100 @@
+datasource db {
+  provider          = "postgresql"
+  url               = "postgres://inventorycesupa:7NYirn5kOTyC@ep-small-voice-004942.us-east-2.aws.neon.tech/inventory"
+  shadowDatabaseUrl = "postgres://inventorycesupa:7NYirn5kOTyC@ep-small-voice-004942.us-east-2.aws.neon.tech/inventoryGhost"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum EnumMovementsType {
+  SELL
+  ADD_TO_STOCK
+  REMOVE_FROM_STOCK
+}
+
+model Products {
+  id             Int       @id @default(autoincrement())
+  name           String
+  description    String?
+  stockQuantity  Int
+  unitPrice      Float
+  expirationDate DateTime?
+  created_at     DateTime  @default(now()) @db.Timestamptz(3)
+  deleted_at     DateTime? @db.Timestamptz(3)
+  updated_at     DateTime  @default(now()) @db.Timestamptz(3)
+
+  category         ProductCategories[]
+  movements        Movements[]
+  productSuppliers ProductSuppliers[]
+}
+
+model Suppliers {
+  id         Int       @id @default(autoincrement())
+  name       String
+  address    String?
+  phone      String?
+  email      String?
+  created_at DateTime  @default(now()) @db.Timestamptz(3)
+  deleted_at DateTime? @db.Timestamptz(3)
+  updated_at DateTime  @default(now()) @db.Timestamptz(3)
+
+  productSuppliers ProductSuppliers[]
+}
+
+model Movements {
+  id           String            @id @default(uuid())
+  movementType EnumMovementsType
+  quantity     Int
+  productId    Int
+  userId       String
+  created_at   DateTime          @default(now()) @db.Timestamptz(3)
+  deleted_at   DateTime?         @db.Timestamptz(3)
+  updated_at   DateTime          @default(now()) @db.Timestamptz(3)
+
+  user    Users    @relation(fields: [userId], references: [id])
+  product Products @relation(fields: [productId], references: [id])
+}
+
+model Users {
+  id         String    @id @default(uuid())
+  name       String
+  email      String    @unique
+  password   String
+  created_at DateTime  @default(now()) @db.Timestamptz(3)
+  deleted_at DateTime? @db.Timestamptz(3)
+  updated_at DateTime  @default(now()) @db.Timestamptz(3)
+
+  movements Movements[]
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  created_at        DateTime            @default(now()) @db.Timestamptz(3)
+  deleted_at        DateTime?           @db.Timestamptz(3)
+  updated_at        DateTime            @default(now()) @db.Timestamptz(3)
+  productCategories ProductCategories[]
+}
+
+model ProductCategories {
+  productId  Int
+  categoryId Int
+
+  product  Products @relation(fields: [productId], references: [id])
+  category Category @relation(fields: [categoryId], references: [id])
+
+  @@id([productId, categoryId])
+}
+
+model ProductSuppliers {
+  productId  Int
+  supplierId Int
+
+  product  Products  @relation(fields: [productId], references: [id])
+  supplier Suppliers @relation(fields: [supplierId], references: [id])
+
+  @@id([productId, supplierId])
+}
