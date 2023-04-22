@@ -11,10 +11,15 @@ export class ListProductsUseCase
   constructor(private readonly listProductRepository: ListProductsRepository) {}
 
   async exec(listProductsInput: TListProductsInput) {
-    console.log('Filters from request', listProductsInput);
+    try {
+      console.log('Filters from request', listProductsInput);
 
-    const products = await this.listProductRepository.exec(listProductsInput);
+      const products = await this.listProductRepository.exec(listProductsInput);
 
-    return products;
+      return products;
+    } catch (error) {
+      console.log('Error', error);
+      throw new Error(error.message);
+    }
   }
 }
