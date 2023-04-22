@@ -13,32 +13,37 @@ export class CreateNewProductUseCase
   ) {}
 
   async exec(input: CreateProductInput) {
-    const productDTO: CreateProductInput = {
-      name: input.name,
-      userId: input.userId,
-      unitPrice: input.unitPrice,
-      supplierId: input.supplierId,
-      description: input.description,
-      stockQuantity: input.stockQuantity,
-      categoryId: input.categoryId,
-      expirationDate: new Date(input.expirationDate),
-    };
+    try {
+      const productDTO: CreateProductInput = {
+        name: input.name,
+        userId: input.userId,
+        unitPrice: input.unitPrice,
+        supplierId: input.supplierId,
+        description: input.description,
+        stockQuantity: input.stockQuantity,
+        categoryId: input.categoryId,
+        expirationDate: new Date(input.expirationDate),
+      };
 
-    console.log('ProductDTO', productDTO);
+      console.log('ProductDTO', productDTO);
 
-    const product = await this.createNewProductRepository.exec(productDTO);
+      const product = await this.createNewProductRepository.exec(productDTO);
 
-    console.log('Created Product', product);
+      console.log('Created Product', product);
 
-    const movementDTO: MovementsInput = {
-      userId: input.userId,
-      quantity: input.stockQuantity,
-      productId: product.id,
-      movementType: 'ADD_TO_STOCK',
-    };
+      const movementDTO: MovementsInput = {
+        userId: input.userId,
+        quantity: input.stockQuantity,
+        productId: product.id,
+        movementType: 'ADD_TO_STOCK',
+      };
 
-    await this.createNewMovementRepository.exec(movementDTO);
+      await this.createNewMovementRepository.exec(movementDTO);
 
-    return product;
+      return product;
+    } catch (error) {
+      console.log('Error', error);
+      throw new Error(error.message);
+    }
   }
 }
