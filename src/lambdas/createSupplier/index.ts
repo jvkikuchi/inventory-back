@@ -1,21 +1,20 @@
 import {APIGatewayEvent} from 'aws-lambda';
 import {Response} from '../../common/interfaces';
-import {makeGetTestController} from './factories/MakeGetTestController';
+import {MakeCreateSupplier} from './factories/MakeCreateSupplier';
 
 export async function bootstrap(event: APIGatewayEvent): Promise<Response> {
   try {
-    const controller = makeGetTestController();
+    const controller = MakeCreateSupplier();
     const response = await controller.exec(event);
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({message: 'Success!', data: response}),
-    };
+    return response;
   } catch (error) {
     console.log(error);
     return {
       statusCode: 500,
-      body: JSON.stringify({message: 'Internal server error'}),
+      body: JSON.stringify({
+        message: 'Internal Server Error',
+      }),
     };
   }
 }

@@ -3,8 +3,8 @@ export interface Response {
   body: any[] | string;
 }
 
-export interface Controller<Input, Output> {
-  exec: (event: Input) => Promise<Output>;
+export interface Controller<Input> {
+  exec: (event: Input) => Promise<Response>;
 }
 
 export interface Repository<Input, Output> {
