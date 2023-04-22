@@ -14,6 +14,7 @@ export function makeCreateNewProductController() {
     createNewProductRepository,
     createNewMovementRepository,
   );
+
   const createNewProductController = new CreateNewProductController(
     createNewProductUseCase,
   );
