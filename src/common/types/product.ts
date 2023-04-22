@@ -1,4 +1,4 @@
-export type Product = {
+export type TProduct = {
   id: number;
   name: string;
   description?: string;
@@ -9,7 +9,7 @@ export type Product = {
   deleted_at: Date;
 };
 
-export type CreateProductInput = {
+export type TCreateProductInput = {
   name: string;
   description?: string;
   stockQuantity: number;
@@ -18,4 +18,21 @@ export type CreateProductInput = {
   supplierId: number;
   userId: string;
   categoryId: number;
+};
+
+export type TListProductsInput = {
+  startDate?: string;
+  endDate?: string;
+  page?: number;
+  pageSize?: number;
+  orderBy?: string;
+  categories?: number[];
+  suppliers?: number[];
+  skip?: number;
+};
+
+export type TListProductsOutput = {
+  products: TProduct[];
+  count: number;
+  totalPages: number;
 };

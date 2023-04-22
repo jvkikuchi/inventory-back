@@ -20,7 +20,19 @@ const serverlessConfiguration = {
     exclude: ['.git/**', '.gitignore', '.github/**', '.vscode/**'],
   },
   functions: {
-    createNewProducct: {
+    listProducts: {
+      handler: 'src/lambdas/ListProducts/index.bootstrap',
+      name: 'list-products-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'product/list',
+            method: 'get',
+          },
+        },
+      ],
+    },
+    createNewProduct: {
       handler: 'src/lambdas/CreateNewProduct/index.bootstrap',
       name: 'create-new-product-${self:provider.stage}',
       events: [
