@@ -3,7 +3,7 @@ export interface Response {
   body: any[] | string;
 }
 
-export interface Controller<Input, Response> {
+export interface Controller<Input> {
   exec: (event: Input) => Promise<Response>;
 }
 

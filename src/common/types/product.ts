@@ -9,10 +9,13 @@ export type Product = {
   deleted_at: Date;
 };
 
-export type ProductInput = {
+export type CreateProductInput = {
   name: string;
   description: string;
   stockQuantity: number;
   unitPrice: number;
   expirationDate: Date;
+  supplierId: number;
+  userId: string;
+  categoryId: number;
 };

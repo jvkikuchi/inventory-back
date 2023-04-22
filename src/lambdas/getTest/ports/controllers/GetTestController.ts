@@ -1,8 +1,8 @@
-import { Controller } from "../../../../common/interfaces";
-import { APIGatewayEvent } from "aws-lambda";
-import { GetTestUseCase } from "../../domain/GetTestUseCase";
+import {Controller} from '../../../../common/interfaces';
+import {APIGatewayEvent} from 'aws-lambda';
+import {GetTestUseCase} from '../../domain/GetTestUseCase';
 
-export class GetTestController implements Controller<APIGatewayEvent, string> {
+export class GetTestController implements Controller<APIGatewayEvent> {
   constructor(private readonly getTestUseCase: GetTestUseCase) {}
 
   async exec(event: APIGatewayEvent) {

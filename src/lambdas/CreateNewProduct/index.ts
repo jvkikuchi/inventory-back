@@ -7,10 +7,7 @@ export async function bootstrap(event: APIGatewayEvent): Promise<Response> {
     const controller = makeCreateNewProductController();
     const response = await controller.exec(event);
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({message: 'Success!', data: response}),
-    };
+    return response;
   } catch (error) {
     console.log(error);
     return {
