@@ -8,7 +8,7 @@ const serverlessConfiguration = {
     versionFunctions: false,
     region: "${opt:region, 'sa-east-1'}",
     stage: "${opt:stage, 'dev'}",
-    timeout: 10,
+    timeout: 11,
     memorySize: 256,
     logRetentionInDays: 30,
     logs: {
@@ -20,15 +20,6 @@ const serverlessConfiguration = {
     exclude: ['.git/**', '.gitignore', '.github/**', '.vscode/**'],
   },
   functions: {
-<<<<<<< HEAD
-    getTeste: {
-      handler: 'src/lambdas/getTest/index.bootstrap',
-      name: 'get-teste-${self:provider.stage}',
-      events: [
-        {
-          http: {
-            path: 'teste',
-=======
     listProducts: {
       handler: 'src/lambdas/ListProducts/index.bootstrap',
       name: 'list-products-${self:provider.stage}',
@@ -48,13 +39,11 @@ const serverlessConfiguration = {
         {
           http: {
             path: 'product',
->>>>>>> 071114ce356f3d7146a86ad2e4c0501ee1371870
             method: 'post',
           },
         },
       ],
     },
-<<<<<<< HEAD
     createSupplier: {
       handler: 'src/lambdas/createSupplier/index.bootstrap',
       name: 'create-supplier-${self:provider.stage}',
@@ -62,15 +51,6 @@ const serverlessConfiguration = {
         {
           http: {
             path: 'supplier',
-=======
-    getTeste: {
-      handler: 'src/lambdas/getTest/index.bootstrap',
-      name: 'get-teste-${self:provider.stage}',
-      events: [
-        {
-          http: {
-            path: 'teste',
->>>>>>> 071114ce356f3d7146a86ad2e4c0501ee1371870
             method: 'post',
           },
         },
