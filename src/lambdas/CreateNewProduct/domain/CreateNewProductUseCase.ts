@@ -1,19 +1,19 @@
 import {UseCase} from '../../../common/interfaces';
 import {CreateNewMovementRepository} from '../../../common/repositories/CreateNewMovementRepository';
 import {MovementsInput} from '../../../common/types/movements';
-import {Product, CreateProductInput} from '../../../common/types/product';
+import {TProduct, TCreateProductInput} from '../../../common/types/product';
 import {CreateNewProductRepository} from '../ports/repositories/CreateNewProductRepository';
 
 export class CreateNewProductUseCase
-  implements UseCase<CreateProductInput, Product>
+  implements UseCase<TCreateProductInput, TProduct>
 {
   constructor(
     private readonly createNewProductRepository: CreateNewProductRepository,
     private readonly createNewMovementRepository: CreateNewMovementRepository,
   ) {}
 
-  async exec(input: CreateProductInput) {
-    const productDTO: CreateProductInput = {
+  async exec(input: TCreateProductInput) {
+    const productDTO: TCreateProductInput = {
       name: input.name,
       userId: input.userId,
       unitPrice: input.unitPrice,

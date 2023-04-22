@@ -1,13 +1,13 @@
 import type {PrismaClient} from '@prisma/client';
 import {Repository} from '../../../../common/interfaces';
-import {Product, CreateProductInput} from '../../../../common/types/product';
+import {TProduct, TCreateProductInput} from '../../../../common/types/product';
 
 export class CreateNewProductRepository
-  implements Repository<CreateProductInput, Product>
+  implements Repository<TCreateProductInput, TProduct>
 {
   constructor(private readonly dbClient: PrismaClient) {}
 
-  async exec(productDTO: CreateProductInput) {
+  async exec(productDTO: TCreateProductInput) {
     const createdProduct = await this.dbClient.$transaction(async tx => {
       const product = await tx.products.create({
         data: {
