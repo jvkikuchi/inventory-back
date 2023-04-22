@@ -20,6 +20,7 @@ const serverlessConfiguration = {
     exclude: ['.git/**', '.gitignore', '.github/**', '.vscode/**'],
   },
   functions: {
+<<<<<<< HEAD
     getTeste: {
       handler: 'src/lambdas/getTest/index.bootstrap',
       name: 'get-teste-${self:provider.stage}',
@@ -27,11 +28,33 @@ const serverlessConfiguration = {
         {
           http: {
             path: 'teste',
+=======
+    listProducts: {
+      handler: 'src/lambdas/ListProducts/index.bootstrap',
+      name: 'list-products-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'product/list',
+            method: 'get',
+          },
+        },
+      ],
+    },
+    createNewProduct: {
+      handler: 'src/lambdas/CreateNewProduct/index.bootstrap',
+      name: 'create-new-product-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'product',
+>>>>>>> 071114ce356f3d7146a86ad2e4c0501ee1371870
             method: 'post',
           },
         },
       ],
     },
+<<<<<<< HEAD
     createSupplier: {
       handler: 'src/lambdas/createSupplier/index.bootstrap',
       name: 'create-supplier-${self:provider.stage}',
@@ -39,6 +62,15 @@ const serverlessConfiguration = {
         {
           http: {
             path: 'supplier',
+=======
+    getTeste: {
+      handler: 'src/lambdas/getTest/index.bootstrap',
+      name: 'get-teste-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'teste',
+>>>>>>> 071114ce356f3d7146a86ad2e4c0501ee1371870
             method: 'post',
           },
         },
