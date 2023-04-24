@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client';
-import { CreateSupplierRepository } from '../ports/repositories/CreateSupplierRepository';
-import { CreateSupplierUseCase } from '../domain/CreateSupplierUseCase';
-import { CreateSupplierController } from '../ports/controllers/CreateSupplierController';
+import {PrismaClient} from '@prisma/client';
+import {CreateSupplierRepository} from '../ports/repositories/CreateSupplierRepository';
+import {CreateSupplierUseCase} from '../domain/CreateSupplierUseCase';
+import {CreateSupplierController} from '../ports/controllers/CreateSupplierController';
 
 export function MakeCreateSupplier() {
   const dbClient = new PrismaClient();
@@ -16,4 +16,3 @@ export function MakeCreateSupplier() {
 
   return createSupplierController;
 }
-

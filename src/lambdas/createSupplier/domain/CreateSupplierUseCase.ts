@@ -17,7 +17,7 @@ export class CreateSupplierUseCase
       email: input.email,
     };
 
-    console.log('Product', supplierDTO);
+    console.log('SupplierDTO', supplierDTO);
 
     const supplier = await this.createSupplierRepository.exec(supplierDTO);
     console.log('Supplier', supplier);
