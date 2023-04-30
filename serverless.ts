@@ -43,13 +43,13 @@ const serverlessConfiguration = {
         },
       ],
     },
-    getTeste: {
-      handler: 'src/lambdas/getTest/index.bootstrap',
-      name: 'get-teste-${self:provider.stage}',
+    createSupplier: {
+      handler: 'src/lambdas/createSupplier/index.bootstrap',
+      name: 'create-supplier-${self:provider.stage}',
       events: [
         {
           http: {
-            path: 'teste',
+            path: 'supplier',
             method: 'post',
           },
         },
