@@ -1,16 +1,13 @@
 import {APIGatewayEvent} from 'aws-lambda';
 import {Response} from '../../common/interfaces';
-import {makeGetTestController} from './factories/MakeGetTestController';
+import {makeCreateNewProductController} from './factories/MakeCreateNewProduct';
 
 export async function bootstrap(event: APIGatewayEvent): Promise<Response> {
   try {
-    const controller = makeGetTestController();
+    const controller = makeCreateNewProductController();
     const response = await controller.exec(event);
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({message: 'Success!', data: response}),
-    };
+    return response;
   } catch (error) {
     console.log(error);
     return {
