@@ -1,4 +1,4 @@
-import type {PrismaClient} from '@prisma/client';
+import type {Prisma, PrismaClient} from '@prisma/client';
 import {Repository} from '../../../../common/interfaces';
 import type {
   TListProductsInput,
@@ -36,8 +36,7 @@ export class ListProductsRepository
       const [products, count] = await Promise.all([
         this.dbClient.products.findMany({
           skip,
-          // @ts-expect-error orderBy is enum on prisma, but come as string from querystring
-          orderBy: {name: orderBy || 'asc'},
+          orderBy: {name: (orderBy as Prisma.SortOrder) || 'asc'},
           take: pageSize,
           where: {AND: where},
         }),
