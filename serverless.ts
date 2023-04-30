@@ -1,5 +1,5 @@
 const serverlessConfiguration = {
-  service: "${env:service, 'inventory'}",
+  service: "${env:service, 'inventory-back'}",
   org: 'inventory',
   useDotenv: true,
   provider: {
