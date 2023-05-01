@@ -15,3 +15,19 @@ export type CreateSupplierInput = {
   phone?: string;
   email?: string;
 };
+
+export type TListSuppliersInput = {
+  startDate?: string;
+  endDate?: string;
+  page?: number;
+  pageSize?: number;
+  products?: number[];
+  orderBy?: string;
+  skip?: number;
+};
+
+export type TListSuppliersOutput = {
+  suppliers: Supplier[];
+  count: number;
+  totalPages: number;
+};

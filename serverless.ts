@@ -55,6 +55,18 @@ const serverlessConfiguration = {
         },
       ],
     },
+    listSuppliers: {
+      handler: 'src/lambdas/ListSuppliers/index.bootstrap',
+      name: 'list-suppliers-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'supplier',
+            method: 'get',
+          },
+        },
+      ],
+    },
   },
   plugins: ['serverless-plugin-typescript', 'serverless-offline'],
 };
