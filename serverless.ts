@@ -8,7 +8,6 @@ const serverlessConfiguration = {
     versionFunctions: false,
     region: "${opt:region, 'sa-east-1'}",
     stage: "${opt:stage, 'dev'}",
-    timeout: 10,
     memorySize: 256,
     logRetentionInDays: 30,
     logs: {
