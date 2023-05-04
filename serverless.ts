@@ -31,6 +31,18 @@ const serverlessConfiguration = {
         },
       ],
     },
+    createCategory: {
+      handler: 'src/lambdas/CreateCategory/index.bootstrap',
+      name: 'create-category-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'category',
+            method: 'post',
+          },
+        },
+      ],
+    },
     createNewProduct: {
       handler: 'src/lambdas/CreateNewProduct/index.bootstrap',
       name: 'create-new-product-${self:provider.stage}',
