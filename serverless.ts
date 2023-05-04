@@ -19,30 +19,6 @@ const serverlessConfiguration = {
     exclude: ['.git/**', '.gitignore', '.github/**', '.vscode/**'],
   },
   functions: {
-    listProducts: {
-      handler: 'src/lambdas/ListProducts/index.bootstrap',
-      name: 'list-products-${self:provider.stage}',
-      events: [
-        {
-          http: {
-            path: 'product',
-            method: 'get',
-          },
-        },
-      ],
-    },
-    createNewProduct: {
-      handler: 'src/lambdas/CreateNewProduct/index.bootstrap',
-      name: 'create-new-product-${self:provider.stage}',
-      events: [
-        {
-          http: {
-            path: 'product',
-            method: 'post',
-          },
-        },
-      ],
-    },
     getTeste: {
       handler: 'src/lambdas/getTest/index.bootstrap',
       name: 'get-teste-${self:provider.stage}',
@@ -50,6 +26,18 @@ const serverlessConfiguration = {
         {
           http: {
             path: 'teste',
+            method: 'post',
+          },
+        },
+      ],
+    },
+    createSupplier: {
+      handler: 'src/lambdas/createSupplier/index.bootstrap',
+      name: 'create-supplier-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'supplier',
             method: 'post',
           },
         },
