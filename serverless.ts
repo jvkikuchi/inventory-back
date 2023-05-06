@@ -1,5 +1,5 @@
 const serverlessConfiguration = {
-  service: "${env:service, 'inventory'}",
+  service: "${env:service, 'inventory-back'}",
   org: 'inventory',
   useDotenv: true,
   provider: {
@@ -19,13 +19,25 @@ const serverlessConfiguration = {
     exclude: ['.git/**', '.gitignore', '.github/**', '.vscode/**'],
   },
   functions: {
-    getTeste: {
-      handler: 'src/lambdas/getTest/index.bootstrap',
-      name: 'get-teste-${self:provider.stage}',
+    listProducts: {
+      handler: 'src/lambdas/ListProducts/index.bootstrap',
+      name: 'list-products-${self:provider.stage}',
       events: [
         {
           http: {
-            path: 'teste',
+            path: 'product',
+            method: 'get',
+          },
+        },
+      ],
+    },
+    createNewProduct: {
+      handler: 'src/lambdas/CreateNewProduct/index.bootstrap',
+      name: 'create-new-product-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'product',
             method: 'post',
           },
         },
@@ -39,6 +51,18 @@ const serverlessConfiguration = {
           http: {
             path: 'supplier',
             method: 'post',
+          },
+        },
+      ],
+    },
+    listSuppliers: {
+      handler: 'src/lambdas/ListSuppliers/index.bootstrap',
+      name: 'list-suppliers-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'supplier',
+            method: 'get',
           },
         },
       ],

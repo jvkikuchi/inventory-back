@@ -26,6 +26,13 @@ export class CreateNewProductRepository
         },
       });
 
+      await tx.productCategories.create({
+        data: {
+          categoryId: productDTO.categoryId,
+          productId: product.id,
+        },
+      });
+
       await tx.productSuppliers.create({
         data: {
           supplierId: productDTO.supplierId,
@@ -44,7 +51,10 @@ export class CreateNewProductRepository
 
       return product;
     });
-
     return createdProduct;
+  }
+  catch(error) {
+    console.log('Error', error);
+    throw new Error(error.message);
   }
 }
