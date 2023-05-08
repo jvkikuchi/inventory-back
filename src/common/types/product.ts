@@ -10,6 +10,23 @@ export type TProduct = {
   deleted_at: Date;
 };
 
+export type TGetProductInput = {
+  productId: number;
+};
+
+export type TUpdateProductInput = {
+  id: number;
+  name: string;
+  description?: string;
+  stockQuantity: number;
+  unitPrice: number;
+  expirationDate?: Date;
+  userId: string;
+  supplierId: number;
+  categoryId: number;
+  image?: string;
+};
+
 export type TCreateProductInput = {
   name: string;
   description?: string;
@@ -19,6 +36,7 @@ export type TCreateProductInput = {
   supplierId: number;
   userId: string;
   categoryId: number;
+  image?: string;
 };
 
 export type TListProductsInput = {
