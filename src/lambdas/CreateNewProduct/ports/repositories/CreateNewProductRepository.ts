@@ -11,6 +11,7 @@ export class CreateNewProductRepository
     const createdProduct = await this.dbClient.$transaction(async tx => {
       const product = await tx.products.create({
         data: {
+          userId: productDTO.userId,
           name: productDTO.name,
           unitPrice: productDTO.unitPrice,
           description: productDTO.description,

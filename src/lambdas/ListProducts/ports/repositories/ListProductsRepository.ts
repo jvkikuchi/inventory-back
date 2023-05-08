@@ -19,10 +19,12 @@ export class ListProductsRepository
         endDate,
         orderBy,
         skip,
+        userId,
         pageSize,
       } = filterInput;
 
       const where = [
+        userId && {userId},
         categories && {category: {some: {categoryId: {in: categories}}}},
         suppliers && {productSuppliers: {some: {supplierId: {in: suppliers}}}},
         startDate && {

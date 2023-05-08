@@ -2,6 +2,7 @@ export type TProduct = {
   id: number;
   name: string;
   description?: string;
+  userId: string;
   stockQuantity: number;
   unitPrice: number;
   expirationDate?: Date;
@@ -25,6 +26,7 @@ export type TListProductsInput = {
   endDate?: string;
   page?: number;
   pageSize?: number;
+  userId: string;
   orderBy?: string;
   categories?: number[];
   suppliers?: number[];
