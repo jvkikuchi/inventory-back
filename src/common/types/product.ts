@@ -19,6 +19,7 @@ export type TCreateProductInput = {
   supplierId: number;
   userId: string;
   categoryId: number;
+  image?: string;
 };
 
 export type TListProductsInput = {

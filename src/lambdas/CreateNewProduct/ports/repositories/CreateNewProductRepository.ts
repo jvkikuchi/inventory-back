@@ -17,13 +17,7 @@ export class CreateNewProductRepository
           description: productDTO.description,
           expirationDate: productDTO.expirationDate,
           stockQuantity: productDTO.stockQuantity,
-        },
-      });
-
-      await tx.productCategories.create({
-        data: {
-          categoryId: productDTO.categoryId,
-          productId: product.id,
+          image: productDTO.image,
         },
       });
 
