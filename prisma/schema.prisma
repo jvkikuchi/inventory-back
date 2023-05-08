@@ -18,6 +18,7 @@ enum EnumPaymentMethodType {
   PIX
   DEBIT
   CREDIT
+  CASH
 }
 
 model Products {
