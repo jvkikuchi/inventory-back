@@ -14,6 +14,12 @@ enum EnumMovementsType {
   REMOVE_FROM_STOCK
 }
 
+enum EnumPaymentMethodType {
+  PIX
+  DEBIT
+  CREDIT
+}
+
 model Products {
   id             Int       @id @default(autoincrement())
   name           String
@@ -54,8 +60,21 @@ model Movements {
   deleted_at   DateTime?         @db.Timestamptz(3)
   updated_at   DateTime          @default(now()) @db.Timestamptz(3)
 
-  product Products @relation(fields: [productId], references: [id])
+  product     Products      @relation(fields: [productId], references: [id])
+  SellHistory SellHistory[]
 }
+
+model SellHistory {
+  id            String                @id @default(uuid())
+  movementId    String
+  paymentMethod EnumPaymentMethodType
+  created_at    DateTime              @default(now()) @db.Timestamptz(3)
+  deleted_at    DateTime?             @db.Timestamptz(3)
+  updated_at    DateTime              @default(now()) @db.Timestamptz(3)
+
+  movement Movements @relation(fields: [movementId], references: [id])
+}
+
 
 model Category {
   id   Int    @id @default(autoincrement())
