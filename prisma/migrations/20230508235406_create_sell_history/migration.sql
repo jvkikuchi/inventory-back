@@ -1,14 +1,5 @@
-/*
-  Warnings:
-
-  - Added the required column `userId` to the `Products` table without a default value. This is not possible if the table is not empty.
-
-*/
 -- CreateEnum
-CREATE TYPE "EnumPaymentMethodType" AS ENUM ('PIX', 'DEBIT', 'CREDIT');
-
--- AlterTable
-ALTER TABLE "Products" ADD COLUMN     "userId" TEXT NOT NULL;
+CREATE TYPE "EnumPaymentMethodType" AS ENUM ('PIX', 'DEBIT', 'CREDIT', 'CASH');
 
 -- CreateTable
 CREATE TABLE "SellHistory" (
