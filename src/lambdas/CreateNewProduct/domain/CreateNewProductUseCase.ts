@@ -16,12 +16,13 @@ export class CreateNewProductUseCase
     const productDTO: TCreateProductInput = {
       name: input.name,
       userId: input.userId,
+      image: input.image,
       unitPrice: input.unitPrice,
       supplierId: input.supplierId,
       description: input.description,
       stockQuantity: input.stockQuantity,
       categoryId: input.categoryId,
-      expirationDate: new Date(input.expirationDate),
+      expirationDate: input.expirationDate && new Date(input.expirationDate),
     };
 
     console.log('ProductDTO', productDTO);

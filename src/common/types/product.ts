@@ -2,6 +2,7 @@ export type TProduct = {
   id: number;
   name: string;
   description?: string;
+  userId: string;
   stockQuantity: number;
   unitPrice: number;
   expirationDate?: Date;
@@ -18,6 +19,7 @@ export type TCreateProductInput = {
   supplierId: number;
   userId: string;
   categoryId: number;
+  image?: string;
 };
 
 export type TListProductsInput = {
@@ -25,6 +27,7 @@ export type TListProductsInput = {
   endDate?: string;
   page?: number;
   pageSize?: number;
+  userId: string;
   orderBy?: string;
   categories?: number[];
   suppliers?: number[];
