@@ -18,6 +18,7 @@ model Products {
   id             Int       @id @default(autoincrement())
   name           String
   description    String?
+  userId         String
   stockQuantity  Int
   unitPrice      Float
   expirationDate DateTime?
@@ -53,20 +54,7 @@ model Movements {
   deleted_at   DateTime?         @db.Timestamptz(3)
   updated_at   DateTime          @default(now()) @db.Timestamptz(3)
 
-  user    Users    @relation(fields: [userId], references: [id])
   product Products @relation(fields: [productId], references: [id])
-}
-
-model Users {
-  id         String    @id @default(uuid())
-  name       String
-  email      String    @unique
-  password   String
-  created_at DateTime  @default(now()) @db.Timestamptz(3)
-  deleted_at DateTime? @db.Timestamptz(3)
-  updated_at DateTime  @default(now()) @db.Timestamptz(3)
-
-  movements Movements[]
 }
 
 model Category {
