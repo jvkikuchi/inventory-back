@@ -14,6 +14,10 @@ export type TCreateCategoryOutput = {
   category: TCategory;
 };
 
+export type TListCategoryInput = {
+  userId: string;
+};
+
 export type TListCategoryOutput = {
   categories: TCategory[];
 };
