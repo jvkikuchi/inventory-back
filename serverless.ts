@@ -73,7 +73,7 @@ const serverlessConfiguration = {
       events: [
         {
           http: {
-            path: 'category',
+            path: 'category/{userId}}',
             method: 'get',
           },
         },
