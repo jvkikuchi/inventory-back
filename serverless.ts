@@ -67,6 +67,18 @@ const serverlessConfiguration = {
         },
       ],
     },
+    listCategories: {
+      handler: 'src/lambdas/ListCategories/index.bootstrap',
+      name: 'list-suppliers-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'category',
+            method: 'get',
+          },
+        },
+      ],
+    },
   },
   plugins: ['serverless-plugin-typescript', 'serverless-offline'],
 };
