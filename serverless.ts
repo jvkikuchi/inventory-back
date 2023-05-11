@@ -79,6 +79,18 @@ const serverlessConfiguration = {
         },
       ],
     },
+    paymentMethodStatistics: {
+      handler: 'src/lambdas/PaymentMethodStatistics/index.bootstrap',
+      name: 'payment-method-statistics-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'payment-method/statistics/{userId}',
+            method: 'get',
+          },
+        },
+      ],
+    },
   },
   plugins: ['serverless-plugin-typescript', 'serverless-offline'],
 };
