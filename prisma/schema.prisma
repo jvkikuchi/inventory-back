@@ -39,6 +39,18 @@ model Products {
   productSuppliers ProductSuppliers[]
 }
 
+model Clients {
+  id          String        @id @default(uuid())
+  name        String
+  address     String?
+  phone       String?
+  email       String?
+  created_at  DateTime      @default(now()) @db.Timestamptz(3)
+  deleted_at  DateTime?     @db.Timestamptz(3)
+  updated_at  DateTime      @default(now()) @db.Timestamptz(3)
+  SellHistory SellHistory[]
+}
+
 model Suppliers {
   id         Int       @id @default(autoincrement())
   name       String
@@ -69,14 +81,15 @@ model Movements {
 model SellHistory {
   id            String                @id @default(uuid())
   movementId    String
+  clientId      String
   paymentMethod EnumPaymentMethodType
   created_at    DateTime              @default(now()) @db.Timestamptz(3)
   deleted_at    DateTime?             @db.Timestamptz(3)
   updated_at    DateTime              @default(now()) @db.Timestamptz(3)
 
   movement Movements @relation(fields: [movementId], references: [id])
+  client   Clients   @relation(fields: [clientId], references: [id])
 }
-
 
 model Category {
   id   Int    @id @default(autoincrement())
