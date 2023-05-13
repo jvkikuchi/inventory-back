@@ -43,6 +43,18 @@ const serverlessConfiguration = {
         },
       ],
     },
+    updateProduct: {
+      handler: 'src/lambdas/UpdateProduct/index.bootstrap',
+      name: 'update-product-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'product',
+            method: 'put',
+          },
+        },
+      ],
+    },
     createNewProduct: {
       handler: 'src/lambdas/CreateNewProduct/index.bootstrap',
       name: 'create-new-product-${self:provider.stage}',
