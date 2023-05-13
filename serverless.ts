@@ -55,6 +55,18 @@ const serverlessConfiguration = {
         },
       ],
     },
+    productStatistics: {
+      handler: 'src/lambdas/productStatistics/index.bootstrap',
+      name: 'product-statistics-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'product/{productId}/statistics/{userId}',
+            method: 'get',
+          },
+        },
+      ],
+    },
     createSupplier: {
       handler: 'src/lambdas/createSupplier/index.bootstrap',
       name: 'create-supplier-${self:provider.stage}',

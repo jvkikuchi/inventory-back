@@ -39,3 +39,53 @@ export type TListProductsOutput = {
   count: number;
   totalPages: number;
 };
+
+type TSalesHistory = {
+  movementId: number;
+  movementType: string;
+  quantity: number;
+  paymentMethod: string;
+  sellDate: Date;
+};
+
+export type TProductsFinancialStatisticsOutput = {
+  name: string;
+  id: number;
+  supplierName: string;
+  salesHistory: TSalesHistory[];
+  totalSales: number;
+  creditSales: number;
+  pixSales: number;
+  debitSales: number;
+  cashSales: number;
+};
+
+export type TProductStatisticsInput = {
+  userId: string;
+  products?: string[];
+  startDate?: string;
+  endDate?: string;
+  limit?: number;
+};
+
+type TMovementsHistory = {
+  movementId: number;
+  movementType: string;
+  quantity: number;
+  date: string;
+};
+
+export type TProductsMovementsHistoryOutput = {
+  id: number;
+  name: string;
+  movementsHistory: TMovementsHistory[];
+};
+
+type JoinTypes = Omit<TProductsMovementsHistoryOutput, 'id' | 'name'> &
+  Omit<TProductsFinancialStatisticsOutput, 'id' | 'name' | 'supplierName'>;
+
+export type TProductStatisticsOutput = {
+  name: string;
+  id: number;
+  supplierName: string;
+} & JoinTypes;
