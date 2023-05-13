@@ -31,3 +31,30 @@ export type TListSuppliersOutput = {
   count: number;
   totalPages: number;
 };
+
+export type TSuppliersFinancialStatisticsInput = {
+  userId: string;
+  suppliers?: string[];
+  startDate?: string;
+  endDate?: string;
+  limit?: number;
+};
+
+type salesHistory = {
+  productId: number;
+  movementId: number;
+  paymentMethod: string;
+  quantity: number;
+  sellDate: Date;
+};
+
+export type TSuppliersFinancialStatisticsOutput = {
+  id: number;
+  name: string;
+  salesHistory: salesHistory[];
+  totalSales: bigint;
+  creditSales: bigint;
+  pixSales: bigint;
+  debitSales: bigint;
+  cashSales: bigint;
+};

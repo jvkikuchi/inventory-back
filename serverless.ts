@@ -79,6 +79,18 @@ const serverlessConfiguration = {
         },
       ],
     },
+    suppliersFinancialStatistics: {
+      handler: 'src/lambdas/SuppliersFinancialStatistics/index.bootstrap',
+      name: 'suppliers-financial-statistics-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'supplier/{supplierId}/statistics/{userId}',
+            method: 'get',
+          },
+        },
+      ],
+    },
   },
   plugins: ['serverless-plugin-typescript', 'serverless-offline'],
 };
