@@ -56,7 +56,7 @@ const serverlessConfiguration = {
       ],
     },
     productStatistics: {
-      handler: 'src/lambdas/productStatistics/index.bootstrap',
+      handler: 'src/lambdas/ProductStatistics/index.bootstrap',
       name: 'product-statistics-${self:provider.stage}',
       events: [
         {
