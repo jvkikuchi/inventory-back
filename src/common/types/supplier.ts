@@ -32,7 +32,7 @@ export type TListSuppliersOutput = {
   totalPages: number;
 };
 
-export type TSuppliersFinancialStatisticsInput = {
+export type TSuppliersStatisticsInput = {
   userId: string;
   suppliers?: string[];
   startDate?: string;
@@ -58,3 +58,25 @@ export type TSuppliersFinancialStatisticsOutput = {
   debitSales: bigint;
   cashSales: bigint;
 };
+
+type TMovementsHistory = {
+  productId: number;
+  movementId: number;
+  movementType: string;
+  quantity: number;
+  date: string;
+};
+
+export type TSuppliersMovementsHistoryOutput = {
+  id: number;
+  name: string;
+  movementsHistory: TMovementsHistory[];
+};
+
+type JoinTypes = Omit<TSuppliersMovementsHistoryOutput, 'id' | 'name'> &
+  Omit<TSuppliersFinancialStatisticsOutput, 'id' | 'name'>;
+
+export type TSuppliersStatisticsOutput = {
+  name: string;
+  id: number;
+} & JoinTypes;

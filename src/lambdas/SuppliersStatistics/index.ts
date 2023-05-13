@@ -1,10 +1,10 @@
 import {APIGatewayEvent} from 'aws-lambda';
 import {Response} from '../../common/interfaces';
-import {MakeSuppliersFinancialStatistics} from './factories/MakeSuppliersFinancialStatistics';
+import {MakeSuppliersStatistics} from './factories/MakeSuppliersStatistics';
 
 export async function bootstrap(event: APIGatewayEvent): Promise<Response> {
   try {
-    const controller = MakeSuppliersFinancialStatistics();
+    const controller = MakeSuppliersStatistics();
     const response = await controller.exec(event);
 
     return response;

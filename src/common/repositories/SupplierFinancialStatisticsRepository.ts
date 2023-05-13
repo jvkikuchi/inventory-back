@@ -1,20 +1,20 @@
 import {PrismaClient} from '@prisma/client';
 import {Repository} from '../interfaces';
 import type {
-  TSuppliersFinancialStatisticsInput as TSuppliersFinancialStatisticsInput,
-  TSuppliersFinancialStatisticsOutput as TSuppliersFinancialStatisticsOutput,
+  TSuppliersStatisticsInput,
+  TSuppliersFinancialStatisticsOutput,
 } from '../types/supplier';
 
 export class SuppliersFinancialStatisticsRepository
   implements
     Repository<
-      TSuppliersFinancialStatisticsInput,
+      TSuppliersStatisticsInput,
       TSuppliersFinancialStatisticsOutput[]
     >
 {
   constructor(private readonly dbClient: PrismaClient) {}
 
-  async exec(filterInput: TSuppliersFinancialStatisticsInput) {
+  async exec(filterInput: TSuppliersStatisticsInput) {
     try {
       const {limit, suppliers, userId, startDate, endDate} = filterInput;
 

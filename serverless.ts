@@ -79,9 +79,9 @@ const serverlessConfiguration = {
         },
       ],
     },
-    suppliersFinancialStatistics: {
-      handler: 'src/lambdas/SuppliersFinancialStatistics/index.bootstrap',
-      name: 'suppliers-financial-statistics-${self:provider.stage}',
+    suppliersStatistics: {
+      handler: 'src/lambdas/SuppliersStatistics/index.bootstrap',
+      name: 'suppliers-statistics-${self:provider.stage}',
       events: [
         {
           http: {

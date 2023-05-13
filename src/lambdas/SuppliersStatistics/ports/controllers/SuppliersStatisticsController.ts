@@ -1,12 +1,12 @@
 import {APIGatewayEvent} from 'aws-lambda';
 import {Controller} from '../../../../common/interfaces';
-import {SuppliersFinancialStatisticsUseCase} from '../../domain/SuppliersFinancialStatisticsUseCase';
+import {SuppliersStatisticsUseCase} from '../../domain/SuppliersStatisticsUseCase';
 
-export class SuppliersFinancialStatisticsController
+export class SuppliersStatisticsController
   implements Controller<APIGatewayEvent>
 {
   constructor(
-    private readonly suppliersFinancialStatisticsUseCase: SuppliersFinancialStatisticsUseCase,
+    private readonly suppliersStatisticsUseCase: SuppliersStatisticsUseCase,
   ) {}
 
   async exec(event: APIGatewayEvent) {
@@ -21,9 +21,7 @@ export class SuppliersFinancialStatisticsController
         suppliers: [supplierId],
       };
 
-      const result = await this.suppliersFinancialStatisticsUseCase.exec(
-        filters,
-      );
+      const result = await this.suppliersStatisticsUseCase.exec(filters);
 
       return {
         statusCode: 200,
