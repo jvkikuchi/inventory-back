@@ -16,6 +16,7 @@ export class ListProductsController implements Controller<APIGatewayEvent> {
         page = 1,
         pageSize = 10,
         orderBy,
+        userId,
       } = event.queryStringParameters || {};
 
       let skip = Number(pageSize) * (Number(page) - 1);
@@ -31,6 +32,7 @@ export class ListProductsController implements Controller<APIGatewayEvent> {
         categories: categories && categories.map(id => Number(id)),
         suppliers: suppliers && suppliers.map(id => Number(id)),
         skip,
+        userId,
       };
 
       const result = await this.listProductUseCase.exec(filters);

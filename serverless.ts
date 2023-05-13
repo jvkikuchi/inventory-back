@@ -43,6 +43,18 @@ const serverlessConfiguration = {
         },
       ],
     },
+    updateProduct: {
+      handler: 'src/lambdas/UpdateProduct/index.bootstrap',
+      name: 'update-product-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'product',
+            method: 'put',
+          },
+        },
+      ],
+    },
     createNewProduct: {
       handler: 'src/lambdas/CreateNewProduct/index.bootstrap',
       name: 'create-new-product-${self:provider.stage}',
@@ -67,6 +79,18 @@ const serverlessConfiguration = {
         },
       ],
     },
+    getProduct: {
+      handler: 'src/lambdas/GetProduct/index.bootstrap',
+      name: 'get-product-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'product/{id}',
+            method: 'get',
+          },
+        },
+      ],
+    },
     createSupplier: {
       handler: 'src/lambdas/createSupplier/index.bootstrap',
       name: 'create-supplier-${self:provider.stage}',
@@ -86,6 +110,30 @@ const serverlessConfiguration = {
         {
           http: {
             path: 'supplier',
+            method: 'get',
+          },
+        },
+      ],
+    },
+    paymentMethodStatistics: {
+      handler: 'src/lambdas/PaymentMethodStatistics/index.bootstrap',
+      name: 'payment-method-statistics-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'payment-method/statistics/{userId}',
+            method: 'get',
+          },
+        },
+      ],
+    },
+    listCategories: {
+      handler: 'src/lambdas/ListCategories/index.bootstrap',
+      name: 'list-categories-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'category/{userId}',
             method: 'get',
           },
         },

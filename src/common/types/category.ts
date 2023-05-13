@@ -15,5 +15,5 @@ export type TCreateCategoryOutput = {
 };
 
 export type TListCategoryOutput = {
-  categories: TCategory[];
+  categories: Pick<TCategory, 'id' | 'name'>[];
 };

@@ -1,3 +1,5 @@
+import type {Products, Category, Suppliers} from '@prisma/client';
+
 export type TProduct = {
   id: number;
   name: string;
@@ -8,6 +10,28 @@ export type TProduct = {
   expirationDate?: Date;
   created_at: Date;
   deleted_at: Date;
+};
+
+export type TGetProductInput = {
+  productId: string;
+};
+
+export type TGetProductOutput = Products & {
+  categories: Category[];
+  suppliers: Suppliers[];
+};
+
+export type TUpdateProductInput = {
+  id: number;
+  name: string;
+  description?: string;
+  stockQuantity: number;
+  unitPrice: number;
+  expirationDate?: Date;
+  userId: string;
+  supplierId: number;
+  categoryId: number;
+  image?: string;
 };
 
 export type TCreateProductInput = {
