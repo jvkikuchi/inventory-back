@@ -43,6 +43,18 @@ const serverlessConfiguration = {
         },
       ],
     },
+    updateProduct: {
+      handler: 'src/lambdas/UpdateProduct/index.bootstrap',
+      name: 'update-product-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'product',
+            method: 'put',
+          },
+        },
+      ],
+    },
     createNewProduct: {
       handler: 'src/lambdas/CreateNewProduct/index.bootstrap',
       name: 'create-new-product-${self:provider.stage}',
@@ -56,12 +68,24 @@ const serverlessConfiguration = {
       ],
     },
     productStatistics: {
-      handler: 'src/lambdas/productStatistics/index.bootstrap',
+      handler: 'src/lambdas/ProductStatistics/index.bootstrap',
       name: 'product-statistics-${self:provider.stage}',
       events: [
         {
           http: {
-            path: 'product/{productId}/statistics/{userId}',
+            path: 'product/statistics/{productId}',
+            method: 'get',
+          },
+        },
+      ],
+    },
+    getProduct: {
+      handler: 'src/lambdas/GetProduct/index.bootstrap',
+      name: 'get-product-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'product/{id}',
             method: 'get',
           },
         },
@@ -91,13 +115,37 @@ const serverlessConfiguration = {
         },
       ],
     },
+    paymentMethodStatistics: {
+      handler: 'src/lambdas/PaymentMethodStatistics/index.bootstrap',
+      name: 'payment-method-statistics-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'payment-method/statistics',
+            method: 'get',
+          },
+        },
+      ],
+    },
     suppliersStatistics: {
       handler: 'src/lambdas/SuppliersStatistics/index.bootstrap',
       name: 'suppliers-statistics-${self:provider.stage}',
       events: [
         {
           http: {
-            path: 'supplier/{supplierId}/statistics/{userId}',
+            path: 'supplier/{supplierId}/statistics',
+            method: 'get',
+          },
+        },
+      ],
+    },
+    listCategories: {
+      handler: 'src/lambdas/ListCategories/index.bootstrap',
+      name: 'list-categories-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'category/{userId}',
             method: 'get',
           },
         },
