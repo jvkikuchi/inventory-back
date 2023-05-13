@@ -85,7 +85,7 @@ const serverlessConfiguration = {
       events: [
         {
           http: {
-            path: 'product/{id}',
+            path: 'product/{productId}',
             method: 'get',
           },
         },

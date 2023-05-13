@@ -2,7 +2,7 @@ import {UseCase} from '../../../common/interfaces';
 import {CreateNewMovementRepository} from '../../../common/repositories/CreateNewMovementRepository';
 import {MovementsInput} from '../../../common/types/movements';
 import {TProduct, TUpdateProductInput} from '../../../common/types/product';
-import {GetProductRepository} from '../ports/repositories/GetProductRepository';
+import {GetProductRepository} from '../../../common/repositories/GetProductRepository';
 import {UpdateProductRepository} from '../ports/repositories/UpdateProductRepository';
 
 export class UpdateProductUseCase
@@ -43,7 +43,10 @@ export class UpdateProductUseCase
           currentStockQuantity > productDTO.stockQuantity
             ? 'REMOVE_FROM_STOCK'
             : 'ADD_TO_STOCK',
-        productId: productDTO.id,
+        productId:
+          typeof productDTO.id === 'string'
+            ? Number(productDTO.id)
+            : productDTO.id,
         userId: productDTO.userId,
         quantity: productDTO.stockQuantity,
       };

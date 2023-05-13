@@ -22,7 +22,7 @@ export type TGetProductOutput = Products & {
 };
 
 export type TUpdateProductInput = {
-  id: number;
+  id: string;
   name: string;
   description?: string;
   stockQuantity: number;
