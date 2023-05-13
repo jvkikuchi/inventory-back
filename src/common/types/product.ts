@@ -19,6 +19,20 @@ export type TGetProductInput = {
 export type TGetProductOutput = Products & {
   categories: Category[];
   suppliers: Suppliers[];
+  productId: number;
+};
+
+export type TUpdateProductInput = {
+  id: number;
+  name: string;
+  description?: string;
+  stockQuantity: number;
+  unitPrice: number;
+  expirationDate?: Date;
+  userId: string;
+  supplierId: number;
+  categoryId: number;
+  image?: string;
 };
 
 export type TCreateProductInput = {

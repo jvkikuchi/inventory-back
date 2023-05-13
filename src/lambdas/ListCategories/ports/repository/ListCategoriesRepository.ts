@@ -1,25 +1,29 @@
 import type {PrismaClient} from '@prisma/client';
 import {Repository} from '../../../../common/interfaces';
-import type {
-  TListCategoryInput,
-  TListCategoryOutput,
-} from '../../../../common/types/category';
+import type {TListCategoryOutput} from '../../../../common/types/category';
 
 export class ListCategoriesRepository
-  implements Repository<TListCategoryInput, TListCategoryOutput>
+  implements Repository<string, TListCategoryOutput>
 {
   constructor(private readonly dbClient: PrismaClient) {}
 
-  async exec(filterInput: TListCategoryInput) {
+  async exec(filterInput: string) {
     try {
-      const {userId} = filterInput;
-
-      const where = [userId && {userId: {equals: userId}}];
-
-      console.log('Where clauses', where);
-
       const categories = await this.dbClient.category.findMany({
         orderBy: {name: 'asc'},
+        select: {
+          id: true,
+          name: true,
+        },
+        where: {
+          productCategories: {
+            some: {
+              product: {
+                userId: filterInput,
+              },
+            },
+          },
+        },
       });
 
       return {categories};

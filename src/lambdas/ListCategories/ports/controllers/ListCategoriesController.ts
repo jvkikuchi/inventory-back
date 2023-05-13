@@ -7,13 +7,11 @@ export class ListCategoriesController implements Controller<APIGatewayEvent> {
 
   async exec(event: APIGatewayEvent) {
     try {
-      const {userId} = event.queryStringParameters || {};
+      const {userId} = event.pathParameters || {};
 
-      const filters = {
-        userId: userId,
-      };
+      console.log('user id controller', userId);
 
-      const result = await this.listCategoriesUseCase.exec(filters);
+      const result = await this.listCategoriesUseCase.exec(userId);
 
       return {
         statusCode: 200,
