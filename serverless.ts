@@ -103,6 +103,18 @@ const serverlessConfiguration = {
         },
       ],
     },
+    getStatistics: {
+      handler: 'src/lambdas/GetStatistics/index.bootstrap',
+      name: 'get-statistics-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'statistics/{userId}',
+            method: 'get',
+          },
+        },
+      ],
+    },
   },
   plugins: ['serverless-plugin-typescript', 'serverless-offline'],
 };
