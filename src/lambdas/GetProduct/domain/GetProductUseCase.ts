@@ -1,13 +1,9 @@
-import {GetProductRepository} from '../ports/repositories/GetProductRepository';
 import {UseCase} from '../../../common/interfaces';
-import type {
-  TGetProductInput,
-  TGetProductOutput,
-} from '../../../common/types/product';
+import {GetProductRepository} from '../../../common/repositories/GetProductRepository';
+import type {TGetProductInput} from '../../../common/types/product';
+import type {Products} from '@prisma/client';
 
-export class GetProductUseCase
-  implements UseCase<TGetProductInput, TGetProductOutput>
-{
+export class GetProductUseCase implements UseCase<TGetProductInput, Products> {
   constructor(private readonly getProductRepository: GetProductRepository) {}
 
   async exec(input: TGetProductInput) {
@@ -17,8 +13,8 @@ export class GetProductUseCase
 
     console.log('Product', productDTO);
 
-    const supplier = await this.getProductRepository.exec(productDTO);
+    const product = await this.getProductRepository.exec(productDTO);
 
-    return supplier;
+    return product;
   }
 }
