@@ -30,13 +30,16 @@ export class ProductsFinancialStatisticsRepository
           p."name",
           p.id,
           s."name" as "supplierName",
+          p.image,
+          p."unitPrice",
           jsonb_agg(
             jsonb_build_object(
               'movementId', m.id,
               'movementType', m."movementType",
               'quantity', m.quantity,
               'paymentMethod', sh."paymentMethod",
-              'sellDate', sh.created_at
+              'sellDate', sh.created_at,
+              'totalPrice',  (m.quantity * p."unitPrice")
             ) 
           ) as "salesHistory",
           count(sh.id) as "totalSales",
@@ -55,7 +58,7 @@ export class ProductsFinancialStatisticsRepository
           ${userId ? `and p."userId" = '${userId}'` : ''}
           ${startDate ? `and sh.created_at >= '${startDate}'` : ''}
           ${endDate ? `and sh.created_at <= '${endDate}'` : ''}
-          group  by p."name" , p.id, s."name" 
+          group  by p."name" , p.id, s."name",  p.image, p."unitPrice"
         order by "totalSales" desc
         ${limit ? `limit ${limit}` : ''}
       `);
