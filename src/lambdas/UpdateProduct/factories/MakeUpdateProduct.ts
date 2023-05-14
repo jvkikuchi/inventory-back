@@ -2,7 +2,7 @@ import {PrismaClient} from '@prisma/client';
 import {UpdateProductUseCase} from '../domain/UpdateProductUseCase';
 import {UpdateProductController} from '../ports/controllers/UpdateProductController';
 import {UpdateProductRepository} from '../ports/repositories/UpdateProductRepository';
-import {GetProductRepository} from '../ports/repositories/GetProductRepository';
+import {GetProductRepository} from '../../../common/repositories/GetProductRepository';
 import {CreateNewMovementRepository} from '../../../common/repositories/CreateNewMovementRepository';
 
 export function makeUpdateProductController() {

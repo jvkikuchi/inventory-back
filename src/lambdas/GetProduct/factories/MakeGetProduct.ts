@@ -1,7 +1,7 @@
 import {PrismaClient} from '@prisma/client';
 import {GetProductUseCase} from '../domain/GetProductUseCase';
 import {GetProductController} from '../ports/controllers/GetProductController';
-import {GetProductRepository} from '../ports/repositories/GetProductRepository';
+import {GetProductRepository} from '../../../common/repositories/GetProductRepository';
 
 export function makeGetProductController() {
   const dbClient = new PrismaClient();

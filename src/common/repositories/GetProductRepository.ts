@@ -1,9 +1,6 @@
 import {PrismaClient} from '@prisma/client';
-import {Repository} from '../../../../common/interfaces';
-import {
-  TGetProductInput,
-  TGetProductOutput,
-} from '../../../../common/types/product';
+import {Repository} from '../interfaces';
+import {TGetProductInput, TGetProductOutput} from '../types/product';
 
 export class GetProductRepository
   implements Repository<TGetProductInput, TGetProductOutput>

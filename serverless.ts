@@ -9,6 +9,7 @@ const serverlessConfiguration = {
     region: "${opt:region, 'sa-east-1'}",
     stage: "${opt:stage, 'dev'}",
     memorySize: 256,
+    architecture: 'arm64',
     logRetentionInDays: 30,
     logs: {
       websocket: true,
@@ -67,6 +68,18 @@ const serverlessConfiguration = {
         },
       ],
     },
+    productStatistics: {
+      handler: 'src/lambdas/ProductStatistics/index.bootstrap',
+      name: 'product-statistics-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'statistics/product/{productId}',
+            method: 'get',
+          },
+        },
+      ],
+    },
     getProduct: {
       handler: 'src/lambdas/GetProduct/index.bootstrap',
       name: 'get-product-${self:provider.stage}',
@@ -79,7 +92,6 @@ const serverlessConfiguration = {
         },
       ],
     },
-
     createSupplier: {
       handler: 'src/lambdas/createSupplier/index.bootstrap',
       name: 'create-supplier-${self:provider.stage}',
@@ -110,7 +122,19 @@ const serverlessConfiguration = {
       events: [
         {
           http: {
-            path: 'payment-method/statistics/{userId}',
+            path: 'payment-method/statistics',
+            method: 'get',
+          },
+        },
+      ],
+    },
+    suppliersStatistics: {
+      handler: 'src/lambdas/SuppliersStatistics/index.bootstrap',
+      name: 'suppliers-statistics-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'supplier/{supplierId}/statistics',
             method: 'get',
           },
         },
@@ -123,6 +147,18 @@ const serverlessConfiguration = {
         {
           http: {
             path: 'category/{userId}',
+            method: 'get',
+          },
+        },
+      ],
+    },
+    getStatistics: {
+      handler: 'src/lambdas/GetStatistics/index.bootstrap',
+      name: 'get-statistics-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'statistics/{userId}',
             method: 'get',
           },
         },

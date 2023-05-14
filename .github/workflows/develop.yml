@@ -39,6 +39,9 @@ jobs:
       - name: Migrate deploy 
         run: npx prisma migrate dev
 
+      - name: Prisma generate 
+        run: npx prisma generate dev
+
       - name: serverless deploy
         uses: serverless/github-action@v3
         env:

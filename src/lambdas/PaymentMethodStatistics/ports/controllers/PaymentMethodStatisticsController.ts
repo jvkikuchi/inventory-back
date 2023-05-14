@@ -11,8 +11,8 @@ export class PaymentMethodStatisticsController
 
   async exec(event: APIGatewayEvent) {
     try {
-      const {startDate, endDate, productId} = event.queryStringParameters || {};
-      const {userId} = event.pathParameters;
+      const {startDate, endDate, productId, userId} =
+        event.queryStringParameters || {};
 
       const filters = {
         startDate,
