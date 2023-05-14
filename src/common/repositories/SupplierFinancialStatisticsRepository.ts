@@ -38,7 +38,8 @@ export class SuppliersFinancialStatisticsRepository
               'movementId', m.id,
               'paymentMethod', sh."paymentMethod",
               'quantity', m.quantity,
-              'sellDate', sh.created_at
+              'sellDate', sh.created_at,
+              'totalPrice',  (m.quantity * p."unitPrice")
             )
           ) as "salesHistory",
           count(sh.id) as "totalSales",
