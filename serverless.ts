@@ -5,6 +5,7 @@ const serverlessConfiguration = {
   provider: {
     name: 'aws',
     runtime: 'nodejs16.x',
+    timeout: 60,
     versionFunctions: false,
     region: "${opt:region, 'sa-east-1'}",
     stage: "${opt:stage, 'dev'}",
