@@ -104,6 +104,18 @@ const serverlessConfiguration = {
         },
       ],
     },
+    suppliersStatistics: {
+      handler: 'src/lambdas/SuppliersStatistics/index.bootstrap',
+      name: 'suppliers-statistics-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'supplier/{supplierId}/statistics/{userId}',
+            method: 'get',
+          },
+        },
+      ],
+    },
     paymentMethodStatistics: {
       handler: 'src/lambdas/PaymentMethodStatistics/index.bootstrap',
       name: 'payment-method-statistics-${self:provider.stage}',
