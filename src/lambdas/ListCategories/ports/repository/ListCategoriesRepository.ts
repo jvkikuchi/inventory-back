@@ -7,22 +7,13 @@ export class ListCategoriesRepository
 {
   constructor(private readonly dbClient: PrismaClient) {}
 
-  async exec(filterInput: string) {
+  async exec() {
     try {
       const categories = await this.dbClient.category.findMany({
         orderBy: {name: 'asc'},
         select: {
           id: true,
           name: true,
-        },
-        where: {
-          productCategories: {
-            some: {
-              product: {
-                userId: filterInput,
-              },
-            },
-          },
         },
       });
 

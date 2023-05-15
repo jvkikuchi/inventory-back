@@ -9,13 +9,9 @@ export class ListCategoriesUseCase
     private readonly listCategoriesRepository: ListCategoriesRepository,
   ) {}
 
-  async exec(listCategoriesInput: string) {
+  async exec() {
     try {
-      console.log('Filters from request', listCategoriesInput);
-
-      const categories = await this.listCategoriesRepository.exec(
-        listCategoriesInput,
-      );
+      const categories = await this.listCategoriesRepository.exec();
 
       return categories;
     } catch (error) {
