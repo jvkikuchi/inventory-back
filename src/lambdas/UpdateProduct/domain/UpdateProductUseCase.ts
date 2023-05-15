@@ -32,23 +32,31 @@ export class UpdateProductUseCase
 
     const {stockQuantity: currentStockQuantity} =
       await this.GetProductRepository.exec({
-        productId: productDTO.id,
+        productId:
+          typeof productDTO.id === 'string'
+            ? Number(productDTO.id)
+            : productDTO.id,
       });
 
     if (productDTO.stockQuantity !== currentStockQuantity) {
       console.log('Creating new movement...');
 
+      const movementQuantity =
+        productDTO.stockQuantity > currentStockQuantity
+          ? productDTO.stockQuantity - currentStockQuantity
+          : currentStockQuantity - productDTO.stockQuantity;
+
       const movementDTO: MovementsInput = {
         movementType:
-          currentStockQuantity > productDTO.stockQuantity
-            ? 'REMOVE_FROM_STOCK'
-            : 'ADD_TO_STOCK',
+          productDTO.stockQuantity - currentStockQuantity > 0
+            ? 'ADD_TO_STOCK'
+            : 'REMOVE_FROM_STOCK',
         productId:
           typeof productDTO.id === 'string'
             ? Number(productDTO.id)
             : productDTO.id,
         userId: productDTO.userId,
-        quantity: productDTO.stockQuantity,
+        quantity: movementQuantity,
       };
 
       await this.CreateNewMovementRepository.exec(movementDTO);
