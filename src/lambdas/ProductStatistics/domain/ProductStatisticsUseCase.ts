@@ -35,7 +35,7 @@ export class ProductStatisticsUseCase
       const id = productFinancialStatistics.id;
       const name = productFinancialStatistics.name;
       const supplierName = productFinancialStatistics.supplierName;
-
+      console.log(productFinancialStatistics);
       // delete repeat infos
       delete productsMovementsHistory.id;
       delete productsMovementsHistory.name;

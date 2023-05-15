@@ -43,7 +43,7 @@ export class ProductsMovementsHistoryRepository
         INNER JOIN "Movements" m ON m."productId" = p.id 
         where
           1 = 1
-          ${products?.length > 0 ? `and s.id in (${products.join(',')})` : ''}
+          ${products?.length > 0 ? `and p.id in (${products.join(',')})` : ''}
           ${userId ? `and p."userId" = '${userId}'` : ''}
           ${startDate ? `and m.created_at >= '${startDate}'` : ''}
           ${endDate ? `and m.created_at <= '${endDate}'` : ''}

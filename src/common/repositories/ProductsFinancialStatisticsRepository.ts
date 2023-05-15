@@ -54,7 +54,7 @@ export class ProductsFinancialStatisticsRepository
         inner join "Suppliers" s on s.id = ps."supplierId" 
         where
           1 = 1
-          ${products?.length > 0 ? `and s.id in (${products.join(',')})` : ''}
+          ${products?.length > 0 ? `and p.id in (${products.join(',')})` : ''}
           ${userId ? `and p."userId" = '${userId}'` : ''}
           ${startDate ? `and sh.created_at >= '${startDate}'` : ''}
           ${endDate ? `and sh.created_at <= '${endDate}'` : ''}
