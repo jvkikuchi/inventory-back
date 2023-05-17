@@ -7,9 +7,9 @@ export class GetProductController implements Controller<APIGatewayEvent> {
 
   async exec(event: APIGatewayEvent) {
     try {
-      const {id} = event.pathParameters || {};
+      const {productId} = event.pathParameters || {};
 
-      const result = await this.getProductUseCase.exec({productId: id});
+      const result = await this.getProductUseCase.exec({productId});
 
       return {
         statusCode: 200,

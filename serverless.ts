@@ -9,6 +9,7 @@ const serverlessConfiguration = {
     region: "${opt:region, 'sa-east-1'}",
     stage: "${opt:stage, 'dev'}",
     memorySize: 256,
+    architecture: 'arm64',
     logRetentionInDays: 30,
     logs: {
       websocket: true,

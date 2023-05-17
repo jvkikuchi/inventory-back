@@ -19,11 +19,10 @@ export type TGetProductInput = {
 export type TGetProductOutput = Products & {
   categories: Category[];
   suppliers: Suppliers[];
-  productId: number;
 };
 
 export type TUpdateProductInput = {
-  id: number;
+  id: string;
   name: string;
   description?: string;
   stockQuantity: number;
