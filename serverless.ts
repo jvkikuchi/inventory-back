@@ -74,7 +74,7 @@ const serverlessConfiguration = {
       events: [
         {
           http: {
-            path: 'product/{productId}/statistics/{userId}',
+            path: 'product/statistics/{productId}',
             method: 'get',
           },
         },
@@ -86,7 +86,7 @@ const serverlessConfiguration = {
       events: [
         {
           http: {
-            path: 'product/{productId}',
+            path: 'product/{id}',
             method: 'get',
           },
         },
@@ -116,25 +116,25 @@ const serverlessConfiguration = {
         },
       ],
     },
-    suppliersStatistics: {
-      handler: 'src/lambdas/SuppliersStatistics/index.bootstrap',
-      name: 'suppliers-statistics-${self:provider.stage}',
-      events: [
-        {
-          http: {
-            path: 'supplier/{supplierId}/statistics/{userId}',
-            method: 'get',
-          },
-        },
-      ],
-    },
     paymentMethodStatistics: {
       handler: 'src/lambdas/PaymentMethodStatistics/index.bootstrap',
       name: 'payment-method-statistics-${self:provider.stage}',
       events: [
         {
           http: {
-            path: 'payment-method/statistics/{userId}',
+            path: 'payment-method/statistics',
+            method: 'get',
+          },
+        },
+      ],
+    },
+    suppliersStatistics: {
+      handler: 'src/lambdas/SuppliersStatistics/index.bootstrap',
+      name: 'suppliers-statistics-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'supplier/{supplierId}/statistics',
             method: 'get',
           },
         },
@@ -147,6 +147,18 @@ const serverlessConfiguration = {
         {
           http: {
             path: 'category/{userId}',
+            method: 'get',
+          },
+        },
+      ],
+    },
+    getStatistics: {
+      handler: 'src/lambdas/GetStatistics/index.bootstrap',
+      name: 'get-statistics-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'statistics/{userId}',
             method: 'get',
           },
         },
