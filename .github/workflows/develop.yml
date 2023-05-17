@@ -35,6 +35,9 @@ jobs:
 
       - name: Install Dependecies
         run: npm i
+      
+      - name: Migrate deploy 
+        run: npx prisma migrate dev
 
       - name: serverless deploy
         uses: serverless/github-action@v3
