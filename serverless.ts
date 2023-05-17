@@ -9,6 +9,7 @@ const serverlessConfiguration = {
     region: "${opt:region, 'sa-east-1'}",
     stage: "${opt:stage, 'dev'}",
     memorySize: 256,
+    architecture: 'arm64',
     logRetentionInDays: 30,
     logs: {
       websocket: true,
@@ -67,19 +68,30 @@ const serverlessConfiguration = {
         },
       ],
     },
+    productStatistics: {
+      handler: 'src/lambdas/ProductStatistics/index.bootstrap',
+      name: 'product-statistics-${self:provider.stage}',
+      events: [
+        {
+          http: {
+            path: 'product/{productId}/statistics/{userId}',
+            method: 'get',
+          },
+        },
+      ],
+    },
     getProduct: {
       handler: 'src/lambdas/GetProduct/index.bootstrap',
       name: 'get-product-${self:provider.stage}',
       events: [
         {
           http: {
-            path: 'product/{id}',
+            path: 'product/{productId}',
             method: 'get',
           },
         },
       ],
     },
-
     createSupplier: {
       handler: 'src/lambdas/createSupplier/index.bootstrap',
       name: 'create-supplier-${self:provider.stage}',
